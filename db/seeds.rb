@@ -8,7 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# db/seeds.rb
 groups = %w[Ясли Младшая Средняя Старшая Подготовительная]
 activities = {
   'Завтрак'      => '#FFB74D',
@@ -19,14 +18,14 @@ activities = {
   'Развитие речи'=> '#4DB6AC'
 }
 
-groups.each { |g| Group.create!(name: g) }
-activities.each { |name, color| Activity.create!(name:, color:) }
+groups.each { |g| Schedule::Group.create!(name: g) }
+activities.each { |name, color| Schedule::Activity.create!(name:, color:) }
 
-Group.all.each do |group|
-  %w[mon tue wed thu fri].each do |day|
+Schedule::Group.all.each do |group|
+  %w[monday tuesday wednesday thursday friday].each do |day|
     time = Time.zone.parse('08:30')
-    Activity.all.shuffle.each do |act|
-      ScheduleEntry.create!(
+    Schedule::Activity.all.shuffle.each do |act|
+      Schedule::ScheduleEntry.create!(
         group: group,
         activity: act,
         day: day,

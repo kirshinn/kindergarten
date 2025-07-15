@@ -38,5 +38,8 @@ module Kindergarten
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Set default locale
+    config.i18n.default_locale = :ru
   end
 end
