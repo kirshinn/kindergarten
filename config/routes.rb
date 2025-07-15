@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   # Show group schedule
-  get "groups/:group_code/schedule", to: "schedule#show", as: :group_schedule
+  get "groups/:group_code/schedule", to: "schedules#show", as: :group_schedule
 end
