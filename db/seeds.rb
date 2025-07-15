@@ -8,18 +8,30 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-groups = %w[Ясли Младшая Средняя Старшая Подготовительная]
-activities = {
-  'Завтрак'      => '#FFB74D',
-  'Музыка'       => '#64B5F6',
-  'Прогулка'     => '#81C784',
-  'Обед'         => '#FF8A65',
-  'Тихий час'    => '#BA68C8',
-  'Развитие речи'=> '#4DB6AC'
-}
+groups = [
+  { name: 'Ясли', code: 'NURSERY' },
+  { name: 'Младшая', code: 'JUNIOR' },
+  { name: 'Средняя', code: 'MIDDLE' },
+  { name: 'Старшая', code: 'SENIOR' },
+  { name: 'Подготовительная', code: 'PREPARATORY' }
+]
 
-groups.each { |g| Schedule::Group.create!(name: g) }
-activities.each { |name, color| Schedule::Activity.create!(name:, color:) }
+activities = [
+  { name: 'Завтрак', code: 'BREAKFAST', color: '#FFB74D' },
+  { name: 'Музыка', code: 'MUSIC', color: '#64B5F6' },
+  { name: 'Прогулка', code: 'WALK', color: '#81C784' },
+  { name: 'Обед', code: 'LUNCH', color: '#FF8A65' },
+  { name: 'Тихий час', code: 'NAP', color: '#BA68C8' },
+  { name: 'Развитие речи', code: 'SPEECH', color: '#4DB6AC' }
+]
+
+groups.each do |group|
+  Schedule::Group.create!(name: group[:name], code: group[:code])
+end
+
+activities.each do |activity|
+  Schedule::Activity.create!(name: activity[:name], code: activity[:code], color: activity[:color])
+end
 
 Schedule::Group.all.each do |group|
   %w[monday tuesday wednesday thursday friday].each do |day|

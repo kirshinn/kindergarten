@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "schedule/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -12,4 +11,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # Show group schedule
+  get "groups/:group_code/schedule", to: "schedule#show", as: :group_schedule
 end

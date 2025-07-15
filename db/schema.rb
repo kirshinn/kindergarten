@@ -16,6 +16,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_051017) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
+    t.string "code"
     t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -23,6 +24,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_051017) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
+    t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
