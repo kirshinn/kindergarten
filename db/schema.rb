@@ -14,10 +14,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_051017) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
-  # Custom types defined in this database.
-  # Note that some types may not work with other database engines. Be careful if changing database.
-  create_enum "day", ["mon", "tue", "wed", "thu", "fri"]
-
   create_table "activities", force: :cascade do |t|
     t.string "name"
     t.string "color"
@@ -34,9 +30,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_051017) do
   create_table "schedule_entries", force: :cascade do |t|
     t.bigint "group_id", null: false
     t.bigint "activity_id", null: false
-    t.enum "day", enum_type: "day"
-    t.time "starts_at"
-    t.time "ends_at"
+    t.string "day", null: false
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_schedule_entries_on_activity_id"
