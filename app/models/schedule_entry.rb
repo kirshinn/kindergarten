@@ -1,8 +1,6 @@
 class ScheduleEntry < ApplicationRecord
   belongs_to :group
   belongs_to :activity
-  enum day: { mon: "mon", tue: "tue", wed: "wed",
-              thu: "thu", fri: "fri" }, _suffix: true
 
   validates :starts_at, :ends_at, presence: true
   validate  :times_do_not_overlap
