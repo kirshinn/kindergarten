@@ -10,8 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 0) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_15_051017) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "day", ["mon", "tue", "wed", "thu", "fri"]
+
+  create_table "activities", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schedule_entries", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "activity_id", null: false
+    t.enum "day", enum_type: "day"
+    t.time "starts_at"
+    t.time "ends_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_schedule_entries_on_activity_id"
+    t.index ["group_id"], name: "index_schedule_entries_on_group_id"
+  end
+
+  add_foreign_key "schedule_entries", "activities"
+  add_foreign_key "schedule_entries", "groups"
 end
