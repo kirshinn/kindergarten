@@ -1,5 +1,6 @@
 class SchedulesController < ApplicationController
   include Schedule
+  allow_unauthenticated_access # Разрешить доступ к публичным методам без аутентификации
   def show
     @group = Schedule::Group.find_by!(code: params[:group_code])
     @schedule_entries = @group.schedule_entries.includes(:activity).order(:starts_at)
