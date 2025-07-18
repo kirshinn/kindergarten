@@ -9,20 +9,20 @@
 #   end
 
 groups = [
-  { name: 'Ясли', code: 'NURSERY' },
-  { name: 'Младшая', code: 'JUNIOR' },
-  { name: 'Средняя', code: 'MIDDLE' },
-  { name: 'Старшая', code: 'SENIOR' },
-  { name: 'Подготовительная', code: 'PREPARATORY' }
+  { name: 'Ясли', code: 'nursery' },
+  { name: 'Младшая', code: 'junior' },
+  { name: 'Средняя', code: 'middle' },
+  { name: 'Старшая', code: 'senior' },
+  { name: 'Подготовительная', code: 'preparatory' }
 ]
 
 activities = [
-  { name: 'Завтрак', code: 'BREAKFAST', color: '#FFB74D' },
-  { name: 'Музыка', code: 'MUSIC', color: '#64B5F6' },
-  { name: 'Прогулка', code: 'WALK', color: '#81C784' },
-  { name: 'Обед', code: 'LUNCH', color: '#FF8A65' },
-  { name: 'Тихий час', code: 'NAP', color: '#BA68C8' },
-  { name: 'Развитие речи', code: 'SPEECH', color: '#4DB6AC' }
+  { name: 'Завтрак', code: 'breakfast', color: '#FFB74D' },
+  { name: 'Музыка', code: 'music', color: '#64B5F6' },
+  { name: 'Прогулка', code: 'walk', color: '#81C784' },
+  { name: 'Обед', code: 'lunch', color: '#FF8A65' },
+  { name: 'Тихий час', code: 'nap', color: '#BA68C8' },
+  { name: 'Развитие речи', code: 'speech', color: '#4DB6AC' }
 ]
 
 groups.each do |group|

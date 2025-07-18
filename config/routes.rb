@@ -11,9 +11,19 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Главная страница
+  root "home#index"
 
-  # Show group schedule
+  # Админский дашборд
+  namespace :admin do
+    get "dashboard", to: "dashboard#index", as: :dashboard
+  end
+
+  # Учительский дашборд
+  namespace :teacher do
+    get "dashboard", to: "dashboard#index", as: :dashboard
+  end
+
+  # Расписания
   get "groups/:group_code/schedule", to: "schedules#show", as: :group_schedule
 end
