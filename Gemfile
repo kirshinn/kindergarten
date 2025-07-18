@@ -64,4 +64,7 @@ group :development do
 
   # Use for email testing
   gem "letter_opener"
+
+  # Use for queries n + 1
+  gem "bullet"
 end
