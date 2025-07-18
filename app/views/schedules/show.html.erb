@@ -1,0 +1,47 @@
+<% content_for :title, "Расписание #{@group.name}" %>
+
+<% content_for :head do %>
+  <%= stylesheet_link_tag "schedules", media: "all", "data-turbo-track": "reload" %>
+<% end %>
+
+<div class="container mx-auto p-4 w-full">
+  <h1 class="text-2xl font-bold mb-4">Расписание <%= @group.name %> группа</h1>
+
+  <div class="schedule-grid bg-white rounded-lg shadow p-2">
+    <!-- Header: Days -->
+    <div><div class="h-8"></div></div>
+    <% Schedule::ScheduleEntry.days.each do |day| %>
+      <div class="text-center text-sm font-semibold text-gray-700">
+        <%= Schedule::ScheduleEntry::DAY_TRANSLATIONS[day] %>
+      </div>
+    <% end %>
+
+    <% (8..19).each do |hour| %>
+      <div class="time-row text-sm text-gray-500 font-medium flex items-center">
+        <%= format("%02d:00", hour) %>
+      </div>
+      <% Schedule::ScheduleEntry.days.each do |day| %>
+        <div class="relative">
+          <% entries = @schedule_entries.select { |entry| entry.day == day && entry.starts_at.hour <= hour && entry.ends_at.hour > hour } %>
+          <% entries.each do |entry| %>
+            <% next unless entry.activity %>
+            <div
+              class="event rounded text-xs text-white p-1"
+              style="
+              background: <%= entry.activity.color %>;
+                top: <%= (entry.starts_at.hour - hour + entry.starts_at.min / 60.0) * 50 %>px;
+                height: <%= (entry.ends_at - entry.starts_at) / 3600.0 * 50 %>px;
+              "
+            >
+              <div class="font-semibold"><%= entry.activity.name %></div>
+              <div><%= entry.starts_at.strftime("%H:%M") %> - <%= entry.ends_at.strftime("%H:%M") %></div>
+            </div>
+          <% end %>
+          <% if entries.empty? %>
+            <div class="grid-line border-t border-gray-100 w-full"></div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
