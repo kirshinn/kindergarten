@@ -1,0 +1,4 @@
+.schedule-grid { display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 2px; }
+.time-row { height: 50px; }
+.event { position: absolute; width: calc(100% - 4px); box-sizing: border-box; z-index: 10; }
+.grid-line { position: absolute; width: 100%; }

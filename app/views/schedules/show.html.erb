@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Расписание <%= @group.name %></title>
-  <style>
-      .schedule-grid { display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 2px; }
-      .time-row { height: 50px; }
-      .event { position: absolute; width: calc(100% - 4px); box-sizing: border-box; z-index: 10; }
-      .grid-line { position: absolute; width: 100%; }
-  </style>
-</head>
-<body class="bg-gray-50">
-<div class="container mx-auto p-4">
-  <h1 class="text-2xl font-bold mb-4">Расписание <%= @group.name %></h1>
+<% content_for :title, "Расписание #{@group.name}" %>
+
+<% content_for :head do %>
+  <%= stylesheet_link_tag "schedules", media: "all", "data-turbo-track": "reload" %>
+<% end %>
+
+<div class="container mx-auto p-4 w-full">
+  <h1 class="text-2xl font-bold mb-4">Расписание <%= @group.name %> группа</h1>
+
   <div class="schedule-grid bg-white rounded-lg shadow p-2">
     <!-- Header: Days -->
     <div><div class="h-8"></div></div>
@@ -22,7 +15,7 @@
         <%= Schedule::ScheduleEntry::DAY_TRANSLATIONS[day] %>
       </div>
     <% end %>
-    <!-- Hours -->
+
     <% (8..19).each do |hour| %>
       <div class="time-row text-sm text-gray-500 font-medium flex items-center">
         <%= format("%02d:00", hour) %>
@@ -52,5 +45,3 @@
     <% end %>
   </div>
 </div>
-</body>
-</html>
