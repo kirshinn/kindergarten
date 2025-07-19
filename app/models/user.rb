@@ -2,11 +2,12 @@ class User < ApplicationRecord
   has_secure_password
   has_many :sessions, dependent: :destroy
 
-  enum role: { user: "user", teacher: "teacher", admin: "admin" }, _suffix: true
+  enum :role, { user: "user", teacher: "teacher", admin: "admin" }, suffix: true
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
   def default_redirect_path
+    Rails.logger.info "User role: #{role.inspect}"
     if admin_role?
       Rails.application.routes.url_helpers.admin_dashboard_path
     elsif teacher_role?
