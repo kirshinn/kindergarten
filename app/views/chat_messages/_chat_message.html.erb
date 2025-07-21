@@ -1,0 +1,5 @@
+<!-- app/views/chat_messages/_chat_message.html.erb -->
+<div id="<%= dom_id(chat_message) %>">
+  <strong><%= chat_message.user.email_address %>:</strong>
+  <%= chat_message.content %>
+</div>
