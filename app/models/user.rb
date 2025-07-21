@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :sessions, dependent: :destroy
+  has_many :chat_messages, dependent: :destroy
 
   enum :role, { user: "user", teacher: "teacher", admin: "admin" }, suffix: true
 

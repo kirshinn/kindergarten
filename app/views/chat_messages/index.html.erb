@@ -1,0 +1,14 @@
+<!-- app/views/chat_messages/index.html.erb -->
+<h1>Realtime Chat</h1>
+
+<div id="chat_message_form">
+  <%= form_with model: @chat_message, url: chat_messages_path, data: { turbo_stream: true } do |form| %>
+    <%= form.text_area :content, placeholder: "Say something..." %>
+    <%= form.submit "Send" %>
+  <% end %>
+</div>
+
+<div id="chat_messages">
+  <%= turbo_stream_from "chat_messages" %>
+  <%= render @chat_messages %>
+</div>
