@@ -1,0 +1,13 @@
+<!-- app/views/chat_messages/create.turbo_stream.erb -->
+<turbo-stream action="append" target="chat_messages">
+  <template><%= render partial: "chat_message", formats: [:html], locals: { chat_message: @chat_message } %></template>
+</turbo-stream>
+
+<turbo-stream action="replace" target="chat_message_form">
+  <template>
+    <%= form_with model: ChatMessage.new, url: chat_messages_path, data: { turbo_stream: true } do |form| %>
+      <%= form.text_area :content, placeholder: "Say something..." %>
+      <%= form.submit "Send" %>
+    <% end %>
+  </template>
+</turbo-stream>

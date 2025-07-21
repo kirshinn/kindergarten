@@ -26,4 +26,7 @@ Rails.application.routes.draw do
 
   # Расписания
   get "groups/:group_code/schedule", to: "schedules#show", as: :group_schedule
+
+  # Чат
+  resources :chat_messages, only: [ :index, :create ]
 end
