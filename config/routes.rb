@@ -16,7 +16,11 @@ Rails.application.routes.draw do
 
   # Админский дашборд
   namespace :admin do
-    get "dashboard", to: "dashboard#index", as: :dashboard
+    resources :users
+    resources :sessions
+    resources :chat_messages
+
+    root to: "users#index"
   end
 
   # Учительский дашборд
