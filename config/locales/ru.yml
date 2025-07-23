@@ -1,5 +1,10 @@
 ru:
+  time:
+    formats:
+      default: "%d.%m.%Y %H:%M" # пример: 22.07.2025 14:30
   date:
+    formats:
+      default: "%d.%m.%Y"       # пример: 22.07.2025
     day_names:
       - понедельник
       - вторник
