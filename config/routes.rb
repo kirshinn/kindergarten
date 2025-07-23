@@ -20,6 +20,12 @@ Rails.application.routes.draw do
     resources :sessions
     resources :chat_messages
 
+    namespace :schedule do
+      resources :groups
+      resources :activities
+      resources :schedule_entries
+    end
+
     root to: "users#index"
   end
 
